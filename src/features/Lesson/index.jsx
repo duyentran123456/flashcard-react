@@ -15,7 +15,26 @@ function Lesson(props) {
 
   useEffect(async () => {
     // call firebase to get lesson
-    const lesson = await props.firebase.lesson(lessonId);
+    const lesson = {
+      id: lessonId,
+      title: "Animals",
+      cards: [{
+        id: "1",
+        question: "https://picsum.photos/id/237/200/300",
+        answer: "A dog",
+      },
+      {
+        id: "2",
+        question: "https://picsum.photos/seed/picsum/200/300",
+        answer: "A cat",
+      },
+      {
+        id: "3",
+        question: "https://picsum.photos/200/300?grayscale",
+        answer: "A tiger",
+      }
+    ]
+    };
     setLesson(lesson);
     setIsLoading(false);
     setCurrentCard(lesson.cards[0]);
@@ -45,10 +64,11 @@ function Lesson(props) {
           {/* nếu còn unlearnCards sẽ hiển thị flashcard, nếu đã học hết hiển thị thông báo */}
           {unlearnCards.length > 0 
           ? 
+          <div className="lesson-content">
             <div className="lesson-card-container">
               {/* flash card */}
               <div className="lesson-flash-card">
-                <div className="card" onClick={() => { setFlip(!flip) }}>
+                <div className="flash-card" onClick={() => { setFlip(!flip) }}>
                   <div className="card-content">
                     {flip ?
                       <span className="card-answer">{currentCard.answer}</span>
@@ -61,6 +81,7 @@ function Lesson(props) {
 
               <button onClick={handleLearn}>Học xong</button>
 
+            </div>
             </div>
           :
             <div>Bạn đã hoàn thành bài học!</div>
