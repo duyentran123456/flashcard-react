@@ -1,7 +1,6 @@
-import app from "./app";
-import { getFirestore, collection, getDocs, addDoc, updateDoc, getDoc, doc } from "firebase/firestore";
+import { db } from "./app";
+import { collection, getDocs, addDoc, updateDoc, getDoc, doc } from "firebase/firestore";
 
-const db = getFirestore(app);
 const lessonsCol = collection(db, "lessons");
 
 const getAllLessons = async () => {
