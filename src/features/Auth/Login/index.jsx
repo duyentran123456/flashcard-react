@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+
+import { auth, uiConfig } from "../../../firebase";
 
 function Login() {
-  return (
-    <div>Login</div>
-  )
+	return (
+		<div className="column panel-block">
+			<StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
+		</div>
+	);
 }
 
-export default Login
+export default Login;

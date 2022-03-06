@@ -1,23 +1,41 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from '../../components/Header'
 import LessonItem from './LessonItem'
+
+import { getAllLessons } from '../../firebase/lesson'
 
 import './styles.css'
 
 function Home() {
+  const [lessons, setLessons] = React.useState([])
+  const [isLoading, setIsLoading] = React.useState(true)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getAllLessons()
+      setLessons(response)
+      setIsLoading(false)
+    }
+    fetchData()
+  }, [])
+
   return (
     <>
       <Header />
-      <div className='main-content-container'>
-        <div className='home-content'>
-          <h5>Danh sách bài học</h5>
-          <ul>
-            <li><LessonItem title='Gadgets' description='12 thuat ngu'/></li>
-            <li><LessonItem title='Animals' description='12 thuat ngu'/></li>
-            <li><LessonItem title='Food' description='12 thuat ngu'/></li>
-          </ul>
+      {isLoading ? <div>Loading...</div> :
+        <div className='main-content-container'>
+          <div className='home-content'>
+            <h5>Danh sách bài học</h5>
+            <ul>
+              {lessons.map((lesson) => {
+                return (
+                  <LessonItem key={lesson.id} lesson={lesson} />
+                )
+              })}
+            </ul>
+          </div>
         </div>
-      </div>
+      }
     </>
   )
 }
