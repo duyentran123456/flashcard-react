@@ -64,7 +64,7 @@ function CardModal(props) {
       </ModalBody>
       <ModalFooter>
         <Button color="primary" onClick={handleSubmit}>
-          {isAddMode ? "Them the" : "Sua the"}
+          {isAddMode ? "Thêm thẻ" : "Sửa thẻ"}
         </Button>
         <Button onClick={cancelModal}>Hủy</Button>
       </ModalFooter>

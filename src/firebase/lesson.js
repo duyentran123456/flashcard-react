@@ -1,5 +1,5 @@
 import { db } from "./app";
-import { collection, getDocs, addDoc, updateDoc, getDoc, doc, deleteDoc } from "firebase/firestore";
+import { collection, getDocs, addDoc, updateDoc, getDoc, doc, deleteDoc, onSnapshot, query } from "firebase/firestore";
 
 const lessonsCol = collection(db, "lessons");
 
@@ -13,6 +13,18 @@ const getAllLessons = async () => {
   });
   return lessonList;
 };
+
+const getAllLessonsRealtime = async (callback) => {
+  const q = query(lessonsCol);
+  onSnapshot(q, (querySnapshot) => {
+    const lessons = [];
+    querySnapshot.forEach((doc) => {
+        lessons.push({...doc.data(), id: doc.id});
+    });
+    console.log('lessons', lessons);
+    callback(lessons);
+  });
+}
 
 const getLessonById = async (id) => {
   const lessonRef = doc(lessonsCol, id);
@@ -53,4 +65,4 @@ const deleteLesson = async (id) => {
   }
 };
 
-export { getAllLessons, getLessonById, addLesson, updateLesson, deleteLesson };
+export { getAllLessons, getLessonById, addLesson, updateLesson, deleteLesson, getAllLessonsRealtime };
