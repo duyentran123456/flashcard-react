@@ -14,6 +14,7 @@ function Register() {
     if (!name) alert("Please enter name");
     const user = await registerWithEmailAndPassword(name, email, password);
     console.log('user after handle register: ', user);
+    if(!user) return;
     localStorage.setItem('flash-card-user', JSON.stringify(user));
     navigate('/');
   };

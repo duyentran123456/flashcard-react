@@ -23,7 +23,7 @@ function Header(props) {
       </div>
       <Auth roles={['admin']}>
         <div className='create-lesson'>
-          <a href='lesson/create-lesson' className='create-lesson-link'> Tạo bài học </a>
+          <a href='/lesson/create-lesson' className='create-lesson-link'> Tạo bài học </a>
         </div>
       </Auth>
       <div className='header-user' role='button'>

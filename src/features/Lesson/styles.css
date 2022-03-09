@@ -35,3 +35,29 @@
   width: 300px;
   height: 300px;
 }
+
+.lesson-form {
+  margin-left: 80px;
+}
+
+.lesson-card {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.lesson-card button {
+  width: 100px;
+  height: 50px;
+}
+
+.lesson-card:first-child {
+  padding-top: 10px;
+}
+
+.lesson-card-answer {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 10px;
+}

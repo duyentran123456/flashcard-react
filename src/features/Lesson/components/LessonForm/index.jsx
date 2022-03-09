@@ -50,19 +50,21 @@ function LessonForm(props) {
   }
 
   return (
-    <div>
-      <label htmlFor='title'>Tên bài học</label>
-      <input type="text" name='title' value={title} onChange={(e) => {setTitle(e.target.value)}} />
-
+    <div className="lesson-form">
+      <div style={{'padding': 10}}>
+        <label htmlFor='title' style={{'paddingRight': 5}}>Tên bài học: </label>
+        <input type="text" name='title' value={title} onChange={(e) => {setTitle(e.target.value)}} />
+      </div>
       {cards.map((card, index) => (
-        <div key={index}>
-          <label htmlFor='question'>Câu hỏi: </label>
-          <img src={card.question} alt='question' id='question' style={{width: 300, height: 300}}/>
-          <br />
-          <label htmlFor='answer'>Đáp án: </label>
-          <span id='answer'>{card.answer}</span>
-          <br />
-          <button onClick={() => handleEditCard(index)}>Sửa thẻ</button>
+        <div key={index} className='lesson-card'>
+          <div className="lesson-card-question">
+            <label htmlFor='question'>Câu hỏi: </label>
+            <img src={card.question} alt='question' id='question' style={{width: 300, height: 300}}/>
+          </div>
+          <div className="lesson-card-answer">
+            <span id='answer'>{card.answer}</span>
+          </div>
+          <button onClick={() => handleEditCard(index)} >Sửa thẻ</button>
           <button onClick={() => handleDeleteCard(index)}>Xóa thẻ</button>
         </div>
       ))}
