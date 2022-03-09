@@ -16,12 +16,11 @@ const getAllLessons = async () => {
 
 const getAllLessonsRealtime = async (callback) => {
   const q = query(lessonsCol);
-  onSnapshot(q, (querySnapshot) => {
+  return onSnapshot(q, (querySnapshot) => {
     const lessons = [];
     querySnapshot.forEach((doc) => {
         lessons.push({...doc.data(), id: doc.id});
     });
-    console.log('lessons', lessons);
     callback(lessons);
   });
 }

@@ -18,7 +18,6 @@ function Login() {
 
   const handleLogin = async () => {
     const user = await logInWithEmailAndPassword(email, password);
-    console.log('user after handle login: ', user);
     if(!user) {
       return;
     }
