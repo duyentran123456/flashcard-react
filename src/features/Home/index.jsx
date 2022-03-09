@@ -3,6 +3,7 @@ import Header from '../../components/Header'
 import LessonItem from './LessonItem'
 
 import { getAllLessons } from '../../firebase/lesson'
+import Auth from '../../components/Auth/Auth';
 
 import './styles.css'
 
@@ -20,7 +21,7 @@ function Home() {
   }, [])
 
   return (
-    <>
+    <Auth roles={['user', 'admin']}>
       <Header />
       {isLoading ? <div>Loading...</div> :
         <div className='main-content-container'>
@@ -36,7 +37,7 @@ function Home() {
           </div>
         </div>
       }
-    </>
+    </ Auth>
   )
 }
 

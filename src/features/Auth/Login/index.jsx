@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, logInWithEmailAndPassword } from "../../../firebase/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { logInWithEmailAndPassword } from "../../../firebase/auth";
 import "./Login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, loading, error] = useAuthState(auth);
+  const user = localStorage.getItem('flash-card-user');
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (loading) {
-      // maybe trigger a loading screen
-      return;
+    if(user) {
+      navigate('/');
     }
-    if (user) {
-			console.log("user", user);
-			navigate("/")
-		};
-  }, [user, loading]);
+  }, [user])
+
+  const handleLogin = async () => {
+    const user = await logInWithEmailAndPassword(email, password);
+    console.log('user after handle login: ', user);
+    localStorage.setItem('flash-card-user', JSON.stringify(user));
+    navigate('/');
+  }
 
   return (
     <div className="login">
@@ -40,7 +42,7 @@ function Login() {
         />
         <button
           className="login__btn"
-          onClick={() => logInWithEmailAndPassword(email, password)}
+          onClick={handleLogin}
         >
           Login
         </button>

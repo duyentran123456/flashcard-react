@@ -1,5 +1,5 @@
 import { db } from "./app";
-import { collection, getDocs, addDoc, updateDoc, getDoc, doc } from "firebase/firestore";
+import { collection, getDocs, addDoc, updateDoc, getDoc, doc, deleteDoc } from "firebase/firestore";
 
 const lessonsCol = collection(db, "lessons");
 
@@ -45,9 +45,11 @@ const updateLesson = async (lesson) => {
 };
 
 const deleteLesson = async (id) => {
-  const lessonSnapshot = await getDocs(lessonsCol, id);
-  if (lessonSnapshot.docs.length > 0) {
-    await lessonsCol.doc(id).delete();
+  try {
+    const docRef = doc(lessonsCol, id);
+    await deleteDoc(docRef);
+  } catch (e) {
+    console.error("Error deleting document: ", e);
   }
 };
 

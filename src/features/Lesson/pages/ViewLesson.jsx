@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../../components/Header";
 
-import { getLessonById } from "../../../firebase/lesson";
+import { deleteLesson, getLessonById } from "../../../firebase/lesson";
+import Auth from "../../../components/Auth/Auth";
 
 import "../styles.css";
 
@@ -14,6 +15,8 @@ function ViewLesson(props) {
   const [currentCard, setCurrentCard] = useState(0);
   const [unlearnCards, setUnlearnCards] = useState([]);
   const [flip, setFlip] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchLesson = async () => {
@@ -35,6 +38,11 @@ function ViewLesson(props) {
     setUnlearnCards(newCards);
     setCurrentCard(newCurrentCard);
     setFlip(false);
+  };
+
+  const handleDeleteLesson = async () => {
+    await deleteLesson(lessonId);
+    navigate('/');
   };
 
   return (
@@ -70,6 +78,10 @@ function ViewLesson(props) {
           :
             <div>Bạn đã hoàn thành bài học!</div>
           }
+          <Auth roles={['admin']} >
+            <a href={`/lesson/${lessonId}/edit`}>Sửa bài học</a>
+            <button onClick={handleDeleteLesson}>Xóa bài học</button>
+          </Auth>
         </div>
   }
     </>
