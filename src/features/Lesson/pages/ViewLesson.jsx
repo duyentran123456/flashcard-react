@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 
 import Header from "../../../components/Header";
 import { deleteLesson, getLessonById } from "../../../firebase/lesson";
@@ -79,7 +79,7 @@ function ViewLesson(props) {
             <div>Bạn đã hoàn thành bài học!</div>
           }
           <Auth roles={['admin']} >
-            <a href={`/lesson/${lessonId}/edit`}>Sửa bài học</a>
+            <Link to={`/lesson/${lessonId}/edit`}>Sửa bài học</Link>
             <button onClick={handleDeleteLesson}>Xóa bài học</button>
           </Auth>
         </div>

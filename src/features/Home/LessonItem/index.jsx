@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import './styles.css'
 
@@ -16,7 +17,7 @@ function LessonItem(props) {
         </div>
       </div>
       <div className='lesson-link'>
-        <a href={`/lesson/${lesson.id}`}></a>
+        <Link to={`/lesson/${lesson.id}`}></Link>
       </div>
     </div>
   )

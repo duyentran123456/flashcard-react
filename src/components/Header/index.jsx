@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Auth from '../Auth/Auth'
 
 import './styles.css'
@@ -16,14 +16,14 @@ function Header(props) {
   return (
     <header>
       <div className='header-logo'>
-        <a href='/' className='header-logo-link'> Flash Card </a>
+        <Link to='/' className='header-logo-link'> Flash Card </Link>
       </div>
       <div className='logout'>
         <button onClick={logout}>Đăng xuất</button>
       </div>
       <Auth roles={['admin']}>
         <div className='create-lesson'>
-          <a href='/lesson/create-lesson' className='create-lesson-link'> Tạo bài học </a>
+          <Link  to='/lesson/create-lesson' className='create-lesson-link'> Tạo bài học </Link>
         </div>
       </Auth>
       <div className='header-user' role='button'>

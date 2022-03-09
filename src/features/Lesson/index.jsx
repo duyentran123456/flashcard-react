@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Auth from "../../components/Auth/Auth";
 
 import AddLesson from "./pages/AddLesson";
@@ -11,6 +11,8 @@ function Lesson() {
         <Route path="create-lesson" element={<Auth roles={['admin']}><AddLesson /></Auth>} />
         <Route path=":lessonId/edit" element={<Auth roles={['admin']}><EditLesson /></Auth>} />
         <Route path=":lessonId" element={<Auth roles={['user', 'admin']}><ViewLesson /></Auth>} />
+
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
   );
 }
