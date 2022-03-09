@@ -43,7 +43,7 @@ function CardModal(props) {
   return (
     <Modal isOpen={isOpen}>
       <ModalHeader toggle={cancelModal}>
-        {isAddMode ? "Them the" : "Sua the"}
+        {isAddMode ? "Thêm thẻ" : "Sửa thẻ"}
       </ModalHeader>
       <ModalBody>
         <input
@@ -52,7 +52,7 @@ function CardModal(props) {
           onChange={onImageChange}
           accept="image/*"
         />
-        {uploadingImage && <div>Uploading...</div>}
+        {uploadingImage && <div>Đang tải ảnh lên...</div>}
         {question && <img src={question} alt="question" style={{width: 50, height: 50}}/>}
         <input
           type={"text"}

@@ -16,7 +16,7 @@ function Header(props) {
   return (
     <header>
       <div className='header-logo'>
-        <a href='/' className='header-logo-link'> Quizlet </a>
+        <a href='/' className='header-logo-link'> Flash Card </a>
       </div>
       <div className='logout'>
         <button onClick={logout}>Đăng xuất</button>

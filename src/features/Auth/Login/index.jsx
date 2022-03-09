@@ -31,24 +31,24 @@ function Login() {
           className="login__textBox"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
+          placeholder="E-mail"
         />
         <input
           type="password"
           className="login__textBox"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
+          placeholder="Mật khẩu"
         />
         <button
           className="login__btn"
           onClick={handleLogin}
         >
-          Login
+          Đăng nhập
         </button>
 
         <div>
-          Don't have an account? <Link to="/register">Register</Link> now.
+          Bạn chưa có tài khoản? <Link to="/register">Đăng ký</Link> tại đây.
         </div>
       </div>
     </div>

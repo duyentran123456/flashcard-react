@@ -32,9 +32,9 @@ function EditLesson() {
     <>
       <Header />
       <div className="main-content-container">
-        <h1>Update Lesson</h1>
+        <h1>Sửa bài học</h1>
         {isLoading ? (
-          <div>Loading...</div>
+          <div>Đang tải...</div>
         ) : (
           <LessonForm
             onSubmit={handleSubmit}

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 
 import Header from '../../../components/Header'
 import LessonForm from '../components/LessonForm'
-
 import { addLesson } from '../../../firebase/lesson'
 
 const initialValues = {
@@ -24,7 +23,7 @@ function AddLesson() {
     <>
       <Header />
       <div className='main-content-container'>
-        <h1>Add Lesson</h1>
+        <h1>Tạo bài học</h1>
         <LessonForm 
           onSubmit={handleSubmit} 
           initialValues={initialValues}

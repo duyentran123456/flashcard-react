@@ -56,10 +56,10 @@ function LessonForm(props) {
 
       {cards.map((card, index) => (
         <div key={index}>
-          <label htmlFor='question'>Question: </label>
+          <label htmlFor='question'>Câu hỏi: </label>
           <img src={card.question} alt='question' id='question' style={{width: 300, height: 300}}/>
           <br />
-          <label htmlFor='answer'>Answer: </label>
+          <label htmlFor='answer'>Đáp án: </label>
           <span id='answer'>{card.answer}</span>
           <br />
           <button onClick={() => handleEditCard(index)}>Sửa thẻ</button>

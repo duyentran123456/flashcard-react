@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Header from "../../../components/Header";
 
+import Header from "../../../components/Header";
 import { deleteLesson, getLessonById } from "../../../firebase/lesson";
 import Auth from "../../../components/Auth/Auth";
 
@@ -48,7 +48,7 @@ function ViewLesson(props) {
   return (
     <>
       <Header />
-      {isLoading ? <div>Loading...</div> : 
+      {isLoading ? <div>Đang tải...</div> : 
         <div className="main-content-container">
           <h1>{lesson.title}</h1>
           <span>{lesson.cards.length} thuật ngữ</span>

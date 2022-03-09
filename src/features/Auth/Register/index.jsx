@@ -30,28 +30,28 @@ function Register() {
           className="register__textBox"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Full Name"
+          placeholder="Tên"
         />
         <input
           type="text"
           className="register__textBox"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
+          placeholder="E-mail"
         />
         <input
           type="password"
           className="register__textBox"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
+          placeholder="Mật khẩu"
         />
         <button className="register__btn" onClick={register}>
-          Register
+          Đăng ký
         </button>
 
         <div>
-          Already have an account? <Link to="/login">Login</Link> now.
+          Bạn đã có tài khoản? <Link to="/login">Đăng nhập</Link> tại đây.
         </div>
       </div>
     </div>
