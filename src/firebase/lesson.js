@@ -1,7 +1,17 @@
-import { db } from "./app";
-import { collection, getDocs, addDoc, updateDoc, getDoc, doc, deleteDoc, onSnapshot, query } from "firebase/firestore";
+import { db } from './app';
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  getDoc,
+  doc,
+  deleteDoc,
+  onSnapshot,
+  query,
+} from 'firebase/firestore';
 
-const lessonsCol = collection(db, "lessons");
+const lessonsCol = collection(db, 'lessons');
 
 const getAllLessons = async () => {
   const lessonSnapshot = await getDocs(lessonsCol);
@@ -19,11 +29,11 @@ const getAllLessonsRealtime = async (callback) => {
   return onSnapshot(q, (querySnapshot) => {
     const lessons = [];
     querySnapshot.forEach((doc) => {
-        lessons.push({...doc.data(), id: doc.id});
+      lessons.push({ ...doc.data(), id: doc.id });
     });
     callback(lessons);
   });
-}
+};
 
 const getLessonById = async (id) => {
   const lessonRef = doc(lessonsCol, id);
@@ -31,7 +41,7 @@ const getLessonById = async (id) => {
   const lesson = {
     ...lessonSnapshot.data(),
     id: lessonSnapshot.id,
-  }
+  };
   return lesson;
 };
 
@@ -40,7 +50,7 @@ const addLesson = async (lesson) => {
     const docRef = await addDoc(lessonsCol, lesson);
     return docRef;
   } catch (e) {
-    console.error("Error adding document: ", e);
+    console.error('Error adding document: ', e);
     return null;
   }
 };
@@ -48,10 +58,11 @@ const addLesson = async (lesson) => {
 const updateLesson = async (lesson) => {
   try {
     const docRef = doc(lessonsCol, lesson.id);
+    // eslint-disable-next-line no-unused-vars
     const { id, ...lessonData } = lesson;
-    await updateDoc(docRef, {...lessonData});
+    await updateDoc(docRef, { ...lessonData });
   } catch (e) {
-    console.error("Error updating document: ", e);
+    console.error('Error updating document: ', e);
   }
 };
 
@@ -60,8 +71,15 @@ const deleteLesson = async (id) => {
     const docRef = doc(lessonsCol, id);
     await deleteDoc(docRef);
   } catch (e) {
-    console.error("Error deleting document: ", e);
+    console.error('Error deleting document: ', e);
   }
 };
 
-export { getAllLessons, getLessonById, addLesson, updateLesson, deleteLesson, getAllLessonsRealtime };
+export {
+  getAllLessons,
+  getLessonById,
+  addLesson,
+  updateLesson,
+  deleteLesson,
+  getAllLessonsRealtime,
+};

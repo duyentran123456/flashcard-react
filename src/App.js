@@ -1,10 +1,11 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
-import Login from "./features/Auth/Login";
-import Register from "./features/Auth/Register";
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import './App.css';
+import Login from './features/Auth/Login';
+import Register from './features/Auth/Register';
 
-import Home from "./features/Home";
-import Lesson from "./features/Lesson";
+import Home from './features/Home';
+import Lesson from './features/Lesson';
 
 function App() {
   return (

@@ -1,11 +1,17 @@
-import React, { useState } from "react";
-import { Button } from "reactstrap";
+import React, { useState } from 'react';
+import { Button } from 'reactstrap';
+import PropTypes from 'prop-types';
+import CardModal from '../CardModal';
 
-import CardModal from "../CardModal";
+LessonForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  initialValues: PropTypes.object.isRequired,
+  isAddMode: PropTypes.bool.isRequired,
+};
 
 function LessonForm(props) {
   const { onSubmit, initialValues, isAddMode } = props;
-  const [title, setTitle] = useState(initialValues.title || "");
+  const [title, setTitle] = useState(initialValues.title || '');
   const [cards, setCards] = useState(initialValues.cards || []);
 
   const [showModal, setShowModal] = useState(false);
@@ -28,43 +34,57 @@ function LessonForm(props) {
 
   const handleEditCard = (index) => {
     setShowModal(true);
-    setInitialModal({...cards[index], index});
+    setInitialModal({ ...cards[index], index });
     setIsAddModeModal(false);
-  }
+  };
 
   const handleAddCard = () => {
     setShowModal(true);
-    setInitialModal({question: '', answer: ''});
+    setInitialModal({ question: '', answer: '' });
     setIsAddModeModal(true);
-  }
+  };
 
   const handleDeleteCard = (index) => {
     const newCards = cards.filter((card, i) => {
       return i !== index;
     });
     setCards(newCards);
-  }
+  };
 
   const handleSubmit = async () => {
-    await onSubmit({...initialValues, title, cards});
-  }
+    await onSubmit({ ...initialValues, title, cards });
+  };
 
   return (
     <div className="lesson-form">
-      <div style={{'padding': 10}}>
-        <label htmlFor='title' style={{'paddingRight': 5}}>Tên bài học: </label>
-        <input type="text" name='title' value={title} onChange={(e) => {setTitle(e.target.value)}} />
+      <div style={{ padding: 10 }}>
+        <label htmlFor="title" style={{ paddingRight: 5 }}>
+          Tên bài học:{' '}
+        </label>
+        <input
+          type="text"
+          name="title"
+          value={title}
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
+        />
       </div>
       {cards.map((card, index) => (
-        <div key={index} className='lesson-card'>
+        <div key={index} className="lesson-card">
           <div className="lesson-card-question">
-            <label htmlFor='question'>Câu hỏi: </label>
-            <img src={card.question} alt='question' id='question' style={{width: 300, height: 300}}/>
+            <label htmlFor="question">Câu hỏi: </label>
+            <img
+              src={card.question}
+              alt="question"
+              id="question"
+              style={{ width: 300, height: 300 }}
+            />
           </div>
           <div className="lesson-card-answer">
-            <span id='answer'>{card.answer}</span>
+            <span id="answer">{card.answer}</span>
           </div>
-          <button onClick={() => handleEditCard(index)} >Sửa thẻ</button>
+          <button onClick={() => handleEditCard(index)}>Sửa thẻ</button>
           <button onClick={() => handleDeleteCard(index)}>Xóa thẻ</button>
         </div>
       ))}
@@ -73,10 +93,18 @@ function LessonForm(props) {
         Thêm thẻ mới
       </Button>
 
-      <CardModal isOpen={showModal} setIsOpen={setShowModal} add={addCard} edit={editCard} initialValues={initialModal} isAddMode={isAddModeModal}/>
+      <CardModal
+        isOpen={showModal}
+        setIsOpen={setShowModal}
+        add={addCard}
+        edit={editCard}
+        initialValues={initialModal}
+        isAddMode={isAddModeModal}
+      />
 
-      <Button color="primary" onClick={handleSubmit}>{isAddMode ? 'Tạo bài học' : 'Cập nhật bài học'}</Button>
-
+      <Button color="primary" onClick={handleSubmit}>
+        {isAddMode ? 'Tạo bài học' : 'Cập nhật bài học'}
+      </Button>
     </div>
   );
 }

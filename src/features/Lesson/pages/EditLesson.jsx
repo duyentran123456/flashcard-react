@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import Header from "../../../components/Header";
-import LessonForm from "../components/LessonForm";
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import Header from '../../../components/Header';
+import LessonForm from '../components/LessonForm';
 
-import { updateLesson, getLessonById } from "../../../firebase/lesson";
+import { updateLesson, getLessonById } from '../../../firebase/lesson';
 
 function EditLesson() {
   const { lessonId } = useParams();
@@ -42,7 +42,9 @@ function EditLesson() {
             isAddMode={false}
           />
         )}
-        {submitSuccess && <div style={{color: 'blue'}}>Cập nhật bài học thành công</div>}
+        {submitSuccess && (
+          <div style={{ color: 'blue' }}>Cập nhật bài học thành công</div>
+        )}
       </div>
     </>
   );

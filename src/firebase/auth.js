@@ -3,19 +3,13 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
-} from "firebase/auth";
-import {
-  addDoc,
-  collection,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
+} from 'firebase/auth';
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 
-import { app, db } from "./app";
+import { app, db } from './app';
 
 const auth = getAuth(app);
-const usersCol = collection(db, "users");
+const usersCol = collection(db, 'users');
 
 const logInWithEmailAndPassword = async (email, password) => {
   try {
@@ -37,16 +31,16 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     await addDoc(usersCol, {
       uid: user.uid,
       name,
-      authProvider: "local",
+      authProvider: 'local',
       email,
-      role: "user",
+      role: 'user',
     });
     return {
       uid: user.uid,
       name,
-      authProvider: "local",
+      authProvider: 'local',
       email,
-      role: "user",
+      role: 'user',
     };
   } catch (err) {
     console.error(err);
@@ -61,11 +55,11 @@ const logout = () => {
 
 const getCurrentUser = async (uid) => {
   try {
-    const q = query(usersCol, where("uid", "==", uid));
+    const q = query(usersCol, where('uid', '==', uid));
     const querySnapshot = await getDocs(q);
     return querySnapshot.docs[0].data();
   } catch (e) {
-    console.log("error", e);
+    console.log('error', e);
   }
   return null;
 };
