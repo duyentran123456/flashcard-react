@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-
-import './styles.css';
+import { useNavigate } from 'react-router-dom';
+import { Paper, Typography, Box } from '@mui/material';
 
 LessonItem.propTypes = {
   lesson: PropTypes.object.isRequired,
@@ -11,20 +10,31 @@ LessonItem.propTypes = {
 function LessonItem(props) {
   const { lesson } = props;
 
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/lesson/${lesson.id}`);
+  };
+
   return (
-    <div className="lesson-item">
-      <div className="lesson-content">
-        <div className="lesson-title">
-          <h5>{lesson.title}</h5>
-        </div>
-        <div className="lesson-description">
-          <p>{lesson.cards.length} thuật ngữ</p>
-        </div>
-      </div>
-      <div className="lesson-link">
-        <Link to={`/lesson/${lesson.id}`}></Link>
-      </div>
-    </div>
+    <Paper
+      elevation={2}
+      onClick={handleClick}
+      sx={{ '&:hover': { cursor: 'pointer' } }}
+    >
+      <Box paddingX={2} paddingY={1}>
+        <Typography variant="h6" component="h3">
+          {lesson.title}
+        </Typography>
+        <Typography
+          variant="body1"
+          component="p"
+          color="#939bb4"
+          paddingTop={1}
+        >
+          {lesson.cards.length} thuật ngữ
+        </Typography>
+      </Box>
+    </Paper>
   );
 }
 
